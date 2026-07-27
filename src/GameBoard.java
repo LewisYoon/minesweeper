@@ -1,12 +1,16 @@
+import java.util.Random;
+
 public class GameBoard {
     private int size;
     private Cell[][] cells;
+    private int mineTotal;
 
     // Constructor for board size
     public GameBoard(int size) {
         this.size = size;
+        this.mineTotal = 10;
         createCells();
-
+        placeMine();
     }
 
     // Display the current game board
@@ -15,7 +19,11 @@ public class GameBoard {
             printBorder();
             for (int j = 0; j < size; j++) {
                 // Empty cell placeholder
-                System.out.print("| x ");
+                if (cells[i][j].isMine()) {
+                    System.out.print("| * ");
+                } else {
+                    System.out.print("|   ");
+                }
             }
             System.out.println("|");
         }
@@ -44,4 +52,22 @@ public class GameBoard {
         }
     }
 
+    // Randomly place mines on the board
+    private void placeMine() {
+        Random random = new Random();
+        int placedMine = 0;
+        // get random i(row) j(column) coordinates to place mine using while loop
+        while (placedMine < mineTotal) {
+            int i = random.nextInt(size);
+            int j = random.nextInt(size);
+
+            Cell cell = cells[i][j];
+
+            // check if mine is already placed on that cell
+            if (!cell.isMine()) {
+                cell.setMine(true);
+                placedMine++;
+            }
+        }
+    }
 }
