@@ -36,7 +36,7 @@ public class Cell {
     }
 
     // Set surrounding mine count
-    public void SetMineCount(int count) {
+    public void setMineCount(int count) {
         mineCount = count;
     }
 }

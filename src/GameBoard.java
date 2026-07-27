@@ -11,6 +11,7 @@ public class GameBoard {
         this.mineTotal = 10;
         createCells();
         placeMine();
+        displayMineCount();
     }
 
     // Display the current game board
@@ -22,7 +23,7 @@ public class GameBoard {
                 if (cells[i][j].isMine()) {
                     System.out.print("| * ");
                 } else {
-                    System.out.print("|   ");
+                    System.out.print("| " + cells[i][j].getMineCount() + " ");
                 }
             }
             System.out.println("|");
@@ -69,5 +70,42 @@ public class GameBoard {
                 placedMine++;
             }
         }
+    }
+
+    // Calculate surrounding mine count for every cell
+    private void displayMineCount() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                // Skip mine cells
+                if (cells[i][j].isMine()) {
+                    continue;
+                }
+                int count = countNeighborMines(i, j);
+                cells[i][j].setMineCount(count);
+            }
+        }
+    }
+
+    // Count mines around a specific cell
+    private int countNeighborMines(int row, int col) {
+        int count = 0;
+
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                // Skip cells outside the board
+                if (i < 0 || i >= size || j < 0 || j >= size) {
+                    continue;
+                }
+                // Skip the current cell
+                if (i == row && j == col) {
+                    continue;
+                }
+                if (cells[i][j].isMine()) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 }
