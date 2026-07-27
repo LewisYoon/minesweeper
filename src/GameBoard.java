@@ -108,4 +108,9 @@ public class GameBoard {
 
         return count;
     }
+
+    // Select a cell
+    public void selectCell(int row, int col) {
+        cells[row][col].select();
+    }
 }
