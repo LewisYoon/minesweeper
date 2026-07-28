@@ -13,8 +13,7 @@ A cell can have different states depending on its content.
 ### Mine cell
 
 ```text
-Has cell     | Hidden cell   | Revealed cell
-             |               | (n representing no. of mines nearby)
+Has mine     | Hidden cell   | Revealed cell (n representing no. of mines nearby)
  +---+       |    +---+      |     +---+
  | * |       |    |   |      |     | n |
  +---+       |    +---+      |     +---+
