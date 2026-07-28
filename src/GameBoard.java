@@ -128,4 +128,18 @@ public class GameBoard {
         return true;
 
     }
+
+    // check winning condition
+    public boolean hasWon() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Cell cell = cells[i][j];
+
+                if (!cell.hasMine() && !cell.isSelected())
+                    return false;
+            }
+        }
+        return true;
+    }
+
 }

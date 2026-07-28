@@ -20,6 +20,12 @@ public class Game {
                 break;
 
             }
+            if (board.hasWon()) {
+                board.displayBoard();
+                System.out.println("You Win!");
+                break;
+
+            }
         }
     }
 }
