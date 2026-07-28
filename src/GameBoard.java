@@ -5,6 +5,11 @@ public class GameBoard {
     private Cell[][] cells;
     private int mineTotal;
 
+    // Get board size
+    public int getSize() {
+        return size;
+    }
+
     // Constructor for board size
     public GameBoard(int size) {
         this.size = size;
