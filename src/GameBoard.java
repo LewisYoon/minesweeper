@@ -69,8 +69,39 @@ public class GameBoard {
         if (cell.hasMine()) {
             return false;
         }
+        if (cell.getMineCount() == 0) {
+            revealNeighbors(i, j);
+        }
 
         return true;
+    }
+
+    // Reveal neighbouring cells using DFS algorithm
+    private void revealNeighbors(int row, int col) {
+        // Check surrounding 8 cells
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                // Skip cells outside the board
+                if (i < 0 || i >= size || j < 0 || j >= size) {
+                    continue;
+                }
+                Cell cell = cells[i][j];
+                // Skip already revealed cells
+                if (cell.isSelected()) {
+                    continue;
+                }
+                // Skip mine cells
+                if (cell.hasMine()) {
+                    continue;
+                }
+                // Reveal safe cell
+                cell.select();
+                // Continue cascade if empty cell is found
+                if (cell.getMineCount() == 0) {
+                    revealNeighbors(i, j);
+                }
+            }
+        }
     }
 
     // Check winning condition
