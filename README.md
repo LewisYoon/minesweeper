@@ -6,6 +6,20 @@ The game allows users to configure the board size and number of mines before sta
 
 # Screenshots
 
+## Cell Representation
+
+A cell can have different states depending on its content.
+
+### Mine cell
+
+```text
+Has cell     | Hidden cell   | Revealed cell
+             |               | (n representing no. of mines nearby)
+ +---+       |    +---+      |     +---+
+ | * |       |    |   |      |     | n |
+ +---+       |    +---+      |     +---+
+```
+
 ## Features
 
 - Custom board size configuration
