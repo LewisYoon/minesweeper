@@ -10,12 +10,16 @@ public class Game {
     public void start() {
         while (true) {
             board.displayBoard();
-            // get the user input for row and column
-            System.out.print("Enter a row: ");
-            int row = scanner.nextInt();
-            System.out.print("Enter a column: ");
-            int col = scanner.nextInt();
-            board.selectCell(row, col);
+            // Get coordinate input from user
+            System.out.print("Enter coordinate (row column): ");
+            int i = scanner.nextInt() - 1;
+            int j = scanner.nextInt() - 1;
+            if (!board.selectCell(i, j)) {
+                board.displayBoard();
+                System.out.println("Boom!");
+                break;
+
+            }
         }
     }
 }

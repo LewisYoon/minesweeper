@@ -19,11 +19,17 @@ public class GameBoard {
         for (int i = 0; i < size; i++) {
             printBorder();
             for (int j = 0; j < size; j++) {
-                // Empty cell placeholder
-                if (cells[i][j].isMine()) {
+                // Get the current cell from the board using row and column index
+                Cell cell = cells[i][j];
+                // if cell hasnt selected, hide content
+                if (!cell.isSelected()) {
+                    System.out.print("|   ");
+                    // if selected && has mine print *
+                } else if (cell.hasMine()) {
                     System.out.print("| * ");
                 } else {
-                    System.out.print("| " + cells[i][j].getMineCount() + " ");
+                    // if selected && no mines, shows count of neighbor mines
+                    System.out.print("| " + cell.getMineCount() + " ");
                 }
             }
             System.out.println("|");
@@ -65,7 +71,7 @@ public class GameBoard {
             Cell cell = cells[i][j];
 
             // check if mine is already placed on that cell
-            if (!cell.isMine()) {
+            if (!cell.hasMine()) {
                 cell.setMine(true);
                 placedMine++;
             }
@@ -77,7 +83,7 @@ public class GameBoard {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 // Skip mine cells
-                if (cells[i][j].isMine()) {
+                if (cells[i][j].hasMine()) {
                     continue;
                 }
                 int count = countNeighborMines(i, j);
@@ -100,7 +106,7 @@ public class GameBoard {
                 if (i == row && j == col) {
                     continue;
                 }
-                if (cells[i][j].isMine()) {
+                if (cells[i][j].hasMine()) {
                     count++;
                 }
             }
@@ -110,7 +116,16 @@ public class GameBoard {
     }
 
     // Select a cell
-    public void selectCell(int row, int col) {
-        cells[row][col].select();
+    public boolean selectCell(int i, int j) {
+        Cell cell = cells[i][j];
+        cell.select();
+
+        // check if selected cell has mine
+        if (cell.hasMine()) {
+            // return false so game gets stopped
+            return false;
+        }
+        return true;
+
     }
 }

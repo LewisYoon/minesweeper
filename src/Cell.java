@@ -11,7 +11,7 @@ public class Cell {
     }
 
     // Check if this cell has a mine
-    public boolean isMine() {
+    public boolean hasMine() {
         return mine;
     }
 
