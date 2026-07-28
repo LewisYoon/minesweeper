@@ -36,7 +36,7 @@ A cell can have different states depending on its content.
 
 ### After Input
 
-<img width="295" height="372" alt="Screenshot 2026-07-28 at 4 37 40 pm" src="https://github.com/user-attachments/assets/95840865-3e4e-4496-97f3-d6bc3bbc21c8" />
+<img width="295" height="372" alt="Screenshot 2026-07-28 at 4 37 40 pm" src="https://github.com/user-attachments/assets/95840865-3e4e-4496-97b8-d6bc3bbc21c8" />
 
 ### Game Over (Mine Revealed)
 
