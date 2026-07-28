@@ -1,22 +1,21 @@
-import java.util.Random;
-
 public class GameBoard {
     private int size;
     private Cell[][] cells;
-    private int mineTotal;
+
+    // Constructor for board size
+    public GameBoard(int size) {
+        this.size = size;
+        createCells();
+    }
 
     // Get board size
     public int getSize() {
         return size;
     }
 
-    // Constructor for board size
-    public GameBoard(int size) {
-        this.size = size;
-        this.mineTotal = 10;
-        createCells();
-        placeMine();
-        displayMineCount();
+    // Get cell from board
+    public Cell getCell(int i, int j) {
+        return cells[i][j];
     }
 
     // Display the current game board
@@ -45,79 +44,20 @@ public class GameBoard {
     // Print horizontal border line
     private void printBorder() {
         System.out.print("+");
-
         for (int i = 0; i < size; i++) {
             System.out.print("---+");
         }
-
         System.out.println();
     }
 
     // Create Cell objects for every position
     private void createCells() {
         cells = new Cell[size][size];
-
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 cells[i][j] = new Cell();
             }
         }
-    }
-
-    // Randomly place mines on the board
-    private void placeMine() {
-        Random random = new Random();
-        int placedMine = 0;
-        // get random i(row) j(column) coordinates to place mine using while loop
-        while (placedMine < mineTotal) {
-            int i = random.nextInt(size);
-            int j = random.nextInt(size);
-
-            Cell cell = cells[i][j];
-
-            // check if mine is already placed on that cell
-            if (!cell.hasMine()) {
-                cell.setMine(true);
-                placedMine++;
-            }
-        }
-    }
-
-    // Calculate surrounding mine count for every cell
-    private void displayMineCount() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                // Skip mine cells
-                if (cells[i][j].hasMine()) {
-                    continue;
-                }
-                int count = countNeighborMines(i, j);
-                cells[i][j].setMineCount(count);
-            }
-        }
-    }
-
-    // Count mines around a specific cell
-    private int countNeighborMines(int row, int col) {
-        int count = 0;
-
-        for (int i = row - 1; i <= row + 1; i++) {
-            for (int j = col - 1; j <= col + 1; j++) {
-                // Skip cells outside the board
-                if (i < 0 || i >= size || j < 0 || j >= size) {
-                    continue;
-                }
-                // Skip the current cell
-                if (i == row && j == col) {
-                    continue;
-                }
-                if (cells[i][j].hasMine()) {
-                    count++;
-                }
-            }
-        }
-
-        return count;
     }
 
     // Select a cell
@@ -127,24 +67,22 @@ public class GameBoard {
 
         // check if selected cell has mine
         if (cell.hasMine()) {
-            // return false so game gets stopped
             return false;
         }
-        return true;
 
+        return true;
     }
 
-    // check winning condition
+    // Check winning condition
     public boolean hasWon() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Cell cell = cells[i][j];
-
-                if (!cell.hasMine() && !cell.isSelected())
+                if (!cell.hasMine() && !cell.isSelected()) {
                     return false;
+                }
             }
         }
         return true;
     }
-
 }

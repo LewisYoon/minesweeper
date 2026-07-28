@@ -2,35 +2,38 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
+    private GameBoard board;
+    private Scanner scanner;
 
-    // intialise game board size of 10
-    private GameBoard board = new GameBoard(10);
-    private Scanner scanner = new Scanner(System.in);
+    // Constructor creates game
+    public Game() {
+        board = new GameBoard(10);
+        scanner = new Scanner(System.in);
+        Mine mine = new Mine(board, 10);
+        mine.placeMine();
+        mine.calculateMineCount();
+    }
 
-    // Start the game loop
+    // Start game loop
     public void start() {
         while (true) {
             board.displayBoard();
-            System.out.print("Enter coordinate (row column): ");
-
             int i;
             int j;
-            // validates user input to only integer using try catch
+            System.out.print("Enter coordinate (row column): ");
             try {
                 i = scanner.nextInt() - 1;
                 j = scanner.nextInt() - 1;
-
             } catch (InputMismatchException e) {
                 System.out.println("Please enter numbers only.");
                 scanner.nextLine();
                 continue;
             }
-            // Check coordinate range
             if (!checkCoordinate(i, j)) {
                 System.out.println("Invalid coordinate. Please enter between 1 and " + board.getSize());
                 continue;
             }
-            if (!board.selectCell(i, j)) {
+            if (board.selectCell(i, j)) {
                 board.displayBoard();
                 System.out.println("Boom!");
                 break;
@@ -43,8 +46,10 @@ public class Game {
         }
     }
 
+    // Check if coordinate is inside the board
     private boolean checkCoordinate(int i, int j) {
         int size = board.getSize();
         return i >= 0 && i < size && j >= 0 && j < size;
     }
+
 }
