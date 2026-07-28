@@ -40,11 +40,14 @@ A cell can have different states depending on its content.
 
 ### Game Over (Mine Revealed)
 
-<img width="326" height="188" alt="Screenshot 2026-07-28 at 4 40 29 pm" src="https://github.com/user-attachments/assets/b160f3a6-e1f3-45ec-b01c-95fd0f62e4f3" />
+<img width="295" height="372" alt="Screenshot 2026-07-28 at 4 37 40 pm" src="https://github.com/user-attachments/assets/95840865-3e4e-4496-97b8-d6bc3bbc21c8" />
 
 ### Winning Game (All Safe Cells Revealed)
 
 <img width="317" height="191" alt="Screenshot 2026-07-28 at 4 41 01 pm" src="https://github.com/user-attachments/assets/cbf7bde5-e2e8-4bbc-9e64-2bd1654d4c26" />
+
+### Bonus 2 Cascade revealing (Reveals surrounding of empty cells)
+<img width="253" height="601" alt="Screenshot 2026-07-28 at 5 30 09 pm" src="https://github.com/user-attachments/assets/df0f8936-423b-4bd1-9205-49128b4d88df" />
 
 ## Features
 
