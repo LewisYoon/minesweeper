@@ -49,6 +49,7 @@ public class Game {
         int mines;
 
         while (true) {
+            System.out.print("\n Welcome to minesweeper game! \n \n");
             try {
                 System.out.print("Enter board size (e.g 5 = 5x5 grid): ");
                 size = scanner.nextInt();
